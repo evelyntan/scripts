@@ -11,19 +11,27 @@ The raters can rate different items whereas for Cohen's they need to rate the ex
     Fleiss' kappa specifically allows that although there are a fixed number of raters (e.g., three), different items may be rated by different individuals
 "
 
+install.packages("readxl")
+
 library("irr")
 
-# load in your data
-df <- read.csv('D:\\Projects\\UG-league-project\\data\\coded-transcripts\\team-[34].csv')
+library(readxl)
 
-head(df)
+df_xlsx <- read_excel('D:\\Projects\\UG-league-project\\data\\coded-transcripts\\team-[6].xlsx')
+
+# load in your data
+#df <- read.csv('D:\\Projects\\UG-league-project\\data\\coded-transcripts\\team-[32].csv')
+
+head(df_xlsx)
 
 # select the rater 1 and rater 2
-data <- df[, 5:6]
+data_code_1 <- df_xlsx[, 5:6]
+
+data_code_2 <- df_xlsx[, 7:8]
 
 # compute fleiss kappa
-kappam.fleiss(data)
-
+kappam.fleiss(data_code_1)
+kappam.fleiss(data_code_2)
 
 # good guide to follow : https://www.datanovia.com/en/lessons/intraclass-correlation-coefficient-in-r/
 # core reference for ICC: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4913118/
